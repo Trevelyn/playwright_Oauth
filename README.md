@@ -15,7 +15,7 @@ Setup:
 5. cp .env.example .env and fill values
 
 Run first-time OAuth test to save state:
-pytest tests/test_login_google_oauth.py -k login
+pytest tests/test_github_google_login.py -k test_github_google_login
 
 Run all tests:
 pytest
