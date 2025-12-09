@@ -4,7 +4,7 @@ from playwright.async_api import Page
 class GoogleOAuthPage(BasePage):
     # Google's selectors; may change over time — update if needed.
     EMAIL_INPUT = 'input[type="email"]'
-    EMAIL_NEXT = 'div[id="identifierNext"]'
+    EMAIL_NEXT = 'div[id="identifierNext"]'   
     PASSWORD_INPUT = 'input[type="password"]'
     PASS_NEXT = 'div[id="passwordNext"]'
     CONSENT_BUTTON = 'button:has-text("Allow")'

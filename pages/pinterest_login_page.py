@@ -1,7 +1,7 @@
 from .base_page import BasePage
 from playwright.async_api import Page
 
-class GitHubLoginPage(BasePage):
+class PinterestLoginPage(BasePage):
     CONTINUE_WITH_GOOGLE = 'button[value="google"]'
 
     def __init__(self, page: Page, base_url=None):

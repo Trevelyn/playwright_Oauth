@@ -3,25 +3,18 @@ import pytest
 from playwright.async_api import async_playwright
 from dotenv import load_dotenv
 
+# Load environment variables
 load_dotenv()
 
 @pytest.fixture(scope="session")
-async def playwright_instance():
-    async with async_playwright() as p:
-        yield p
+def verify_env():
+    """Verify all required environment variables are set"""
+    required_vars = ["PINTEREST_BASE_URL", "GOOGLE_EMAIL", "GOOGLE_PASSWORD"]
+    missing = [var for var in required_vars if not os.getenv(var)]
+    
+    if missing:
+        pytest.fail(f"Missing required environment variables: {', '.join(missing)}")
 
 @pytest.fixture(scope="session")
-async def browser(playwright_instance):
-    browser = await playwright_instance.chromium.launch(headless=False)
-    yield browser
-    await browser.close()
-
-@pytest.fixture(scope="session")
-async def auth_state_path():
-    return "auth/github_state.json"
-
-@pytest.fixture
-async def context(browser, auth_state_path):
-    if os.path.exists(auth_state_path):
-        return await browser.new_context(storage_state=auth_state_path)
-    return await browser.new_context()
+def auth_state_path():
+    return "auth/pinterest_state.json"

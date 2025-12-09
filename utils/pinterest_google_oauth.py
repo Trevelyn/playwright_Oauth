@@ -1,14 +1,14 @@
 import os
 from dotenv import load_dotenv
-from pages.github_login_page import GitHubLoginPage
+from pages.pinterest_login_page import PinterestLoginPage
 from pages.google_oauth_page import GoogleOAuthPage
 
 load_dotenv()
 
-async def perform_github_google_oauth(page, context, state_path, base_url):
-    login = GitHubLoginPage(page, base_url)
+async def perform_pinterest_google_oauth(page, context, state_path, base_url):
+    login = PinterestLoginPage(page, base_url)
 
-    # Go to GitHub login page
+    
     await login.open_login()
 
     # Clicking opens Google OAuth popup
@@ -23,8 +23,8 @@ async def perform_github_google_oauth(page, context, state_path, base_url):
         os.getenv("GOOGLE_PASSWORD")
     )
 
-    # Wait for browser to redirect back to GitHub
+    # Wait for browser to redirect back to pinterest
     await page.wait_for_load_state("networkidle")
 
-    # Save GitHub authenticated state
+    # Save Pintrest authenticated state
     await context.storage_state(path=state_path)

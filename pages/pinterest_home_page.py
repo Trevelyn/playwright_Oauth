@@ -1,7 +1,7 @@
 from .base_page import BasePage
 from playwright.async_api import Page
 
-class GitHubHomePage(BasePage):
+class PinterestHomePage(BasePage):
     PROFILE_ICON = 'summary[aria-label="View profile and more"]'
 
     def __init__(self, page: Page, base_url=None):
